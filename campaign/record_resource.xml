@@ -72,80 +72,18 @@
 			</stringu>
 		</sheetdata>
 	</windowclass>
-	
-	<windowclass name="resource_editor">
-		<frame>recordsheet</frame>
+
+	<windowclass name="resource_editor" copy="record_window">
 		<placement>
 			<size width="350" height="350" />
 		</placement>
-		<sizelimits>
-			<minimum width="300" height="300" />
-			<dynamic />
-		</sizelimits>
-		<minimize>minimized_reference</minimize>
-		<tooltip field="name" />
-		<nodelete />
-		<script>
-			function onLockChanged()
-				if header.subwindow then
-					header.subwindow.update();
-				end
-				if main.subwindow then
-					main.subwindow.update();
-				end
-			end
-		</script>
-		<sheetdata>
-			<hs name="type" />
-
-			<sub_record_header name="header">
-				<class>resource_header</class>
-			</sub_record_header>
-
-			<frame_record_content name="contentframe" />
-
-			<subwindow_record name="main">
-				<class>resource_editor_main</class>
-				<activate />
-				<fastinit />
-			</subwindow_record>
-
-			<scrollbar_record>
-				<target>main</target>
-			</scrollbar_record>
-			
-			<resize_recordsheet />
-			<close_recordsheet />
-		</sheetdata>
+		<sub_content_framed_groupbox name="content">
+			<class>resource_editor_main</class>
+			<activate />
+			<fastinit />
+		</sub_content_framed_groupbox>
 	</windowclass>
-	<windowclass name="resource_header">
-		<margins control="0,0,0,2" />
-		<script>
-			function onInit()
-				update();
-			end
-			function update()
-				local bReadOnly = WindowManager.getReadOnlyState(getDatabaseNode());
-				name.setReadOnly(bReadOnly);
-			end
-		</script>
-		<sheetdata>
-			<link_record_header>
-				<class>resource_editor</class>
-			</link_record_header>
 
-			<anchor_record_header_right />
-			<icon_record_locked />
-			<button_record_locked />
-
-			<string_record_name name="name">
-				<empty textres="library_recordtype_empty_resource" />
-			</string_record_name>
-			<label_reftype name="reftype">
-				<static textres="ref_type_resource" />
-			</label_reftype>	
-		</sheetdata>
-	</windowclass>
 	<windowclass name="resource_editor_main">
 		<script file="campaign/scripts/resource_editor.lua" />
 		<sheetdata>
