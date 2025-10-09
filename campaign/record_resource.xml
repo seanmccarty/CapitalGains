@@ -119,6 +119,7 @@
 					</sizelimits>
 				</anchored>
 				<minvalue>0</minvalue>
+				<delaykeyupdate/>
 			</basicnumber>
 
 			<line_column name="divider" />
